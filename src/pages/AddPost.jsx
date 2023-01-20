@@ -99,7 +99,7 @@ const AddPost = () => {
                 </button>
                 <img
                   className='max-w-[180px] rounded mt-2'
-                  src={`http://localhost:5555${imageUrl}`}
+                  src={`process.env.REACT_APP_API_URL{imageUrl}`}
                   alt='uploaded'
                 />
               </>
