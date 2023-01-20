@@ -70,7 +70,7 @@ const Post = ({
       <div className='max-w-screen-sm mx-auto bg-white rounded-b-lg '>
         <div className='bg-slate-200 flex items-center justify-center'>
           {imageUrl ? (
-            <img src={`http://localhost:5555${imageUrl}`} alt='article img' />
+            <img src={`process.env.REACT_APP_API_URL${imageUrl}`} alt='article img' />
           ) : (
             ''
           )}
