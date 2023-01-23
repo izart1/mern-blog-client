@@ -2,8 +2,11 @@ import axios from 'axios';
 
 const instance = axios.create({
   // baseURL: 'http://localhost:5555',
-  baseURL: 'https://mern-blog-api.up.railway.app/',
+
+  // baseURL: 'https://mern-blog-api.up.railway.app/',
   // baseURL: '62.113.96.241:5555',
+
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 instance.interceptors.request.use(config => {
