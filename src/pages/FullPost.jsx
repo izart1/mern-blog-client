@@ -113,7 +113,7 @@ const FullPost = () => {
             <img
               className=''
               // src={`http://localhost:5555${currentPost?.imageUrl}`}
-              src={`${currentPost?.imageUrl}`}
+              src={`https://mern-blog-api.up.railway.app${currentPost?.imageUrl}`}
               alt='title'
             />
           ) : (

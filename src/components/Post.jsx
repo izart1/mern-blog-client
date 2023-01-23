@@ -72,7 +72,7 @@ const Post = ({
         <div className='bg-slate-200 flex items-center justify-center'>
           {imageUrl ? (
             // <img src={`http://localhost:5555${imageUrl}`} alt='article img' />
-            <img src={`${imageUrl}`} alt='article img' />
+            <img src={`https://mern-blog-api.up.railway.app${imageUrl}`} alt='article img' />
           ) : (
             ''
           )}
