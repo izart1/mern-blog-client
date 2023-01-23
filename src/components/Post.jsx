@@ -72,7 +72,10 @@ const Post = ({
         <div className='bg-slate-200 flex items-center justify-center'>
           {imageUrl ? (
             // <img src={`http://localhost:5555${imageUrl}`} alt='article img' />
-            <img src={`https://mern-blog-api.up.railway.app${imageUrl}`} alt='article img' />
+            <img
+              src={`https://mern-blog-api.up.railway.app${imageUrl}`}
+              alt='article img'
+            />
           ) : (
             ''
           )}
@@ -80,13 +83,16 @@ const Post = ({
 
         <div className='flex items-center justify-between p-4'>
           <div className='flex items-center gap-4 text-slate-500 '>
-            <span className='flex items-center gap-1 cursor-pointer hover:text-slate-900  transition-all'>
-              <MdOutlineModeComment className='text-xl' />
-              <span className='text-xs'>{comments?.length}</span>
-              <span className='text-xs'>
-                {`${declOfComments(comments?.length)}`}
+            <Link to={`/posts/${id}/comments`}>
+              <span className='flex items-center gap-1 cursor-pointer hover:text-slate-900  transition-all'>
+                <MdOutlineModeComment className='text-xl' />
+                <span className='text-xs'>{comments?.length}</span>
+                <span className='text-xs hidden sm:flex'>
+                  {`${declOfComments(comments?.length)}`}
+                </span>
               </span>
-            </span>
+            </Link>
+
             {/* <span className='flex items-center gap-1 cursor-pointer hover:text-slate-900 transition-all'>
               <MdIosShare className='text-xl' />{' '}
               <span className='text-xs '>Поделиться</span>
@@ -94,7 +100,9 @@ const Post = ({
             <span className='flex items-center gap-1 cursor-default'>
               <AiOutlineEye className='text-xl' />
               <span className='text-xs'>{viewsCount}</span>
-              <span className='text-xs '>{`${declOfViews(viewsCount)}`}</span>
+              <span className='text-xs hidden sm:flex'>{`${declOfViews(
+                viewsCount
+              )}`}</span>
             </span>
             {isOwner && (
               <>
@@ -103,13 +111,13 @@ const Post = ({
                   className='flex items-center gap-1 cursor-pointer hover:text-slate-900  transition-all'
                 >
                   <MdDeleteOutline className='cursor-pointer hover:rose-500 text-xl' />
-                  <span className='text-xs'>Удалить</span>
+                  <span className='text-xs hidden sm:flex'>Удалить</span>
                 </span>
 
                 <Link to={`/posts/${id}/edit`}>
                   <span className='flex items-center gap-1 cursor-pointer hover:text-slate-900  transition-all'>
                     <MdOutlineModeEditOutline className='cursor-pointer text-xl' />
-                    <span className='text-xs'>Изменить</span>
+                    <span className='text-xs hidden sm:flex'>Изменить</span>
                   </span>
                 </Link>
               </>

@@ -35,7 +35,7 @@ const Header = () => {
   console.count('Header');
 
   return (
-    <div className='w-full h-[54px] bg-slate-800 text-white flex'>
+    <div className='w-full h-[54px] bg-slate-800 text-white flex '>
       <div
         ref={menuRef}
         className='container max-w-screen-md mx-auto flex justify-between items-center px-2'

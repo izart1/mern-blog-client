@@ -32,7 +32,7 @@ const CommentBox = () => {
       {statusPost === 'loading' ? (
         <Spinner />
       ) : (
-        <div className='mt-4'>
+        <div className='mt-4 '>
           {currentPost?.comments?.map(obj => (
             <CommentItem key={obj._id} {...obj} user={obj.user} />
           ))}

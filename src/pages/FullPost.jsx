@@ -122,10 +122,10 @@ const FullPost = () => {
         </div>
         <div className='flex items-center justify-between p-4'>
           <div className='flex items-center gap-4 text-slate-500 '>
-            <span className='flex items-center gap-1 cursor-pointer hover:text-blue-600  transition-all'>
+            <span className='flex items-center gap-1 transition-all cursor-default'>
               <MdOutlineModeComment className='text-xl' />
               <span className='text-xs'>{currentPost?.comments.length}</span>
-              <span className='text-xs'>
+              <span className='text-xs hidden sm:flex'>
                 {`${declOfComments(currentPost?.comments.length)}`}
               </span>
             </span>
@@ -136,7 +136,7 @@ const FullPost = () => {
             <span className='flex items-center gap-1 cursor-default'>
               <AiOutlineEye className='text-xl' />
               <span className='text-xs'>{currentPost?.viewsCount}</span>
-              <span className='text-xs '>{`${declOfViews(
+              <span className='text-xs hidden sm:flex'>{`${declOfViews(
                 data.viewsCount
               )}`}</span>
             </span>
@@ -147,13 +147,13 @@ const FullPost = () => {
                   className='flex items-center gap-1 cursor-pointer hover:text-blue-600  transition-all'
                 >
                   <MdDeleteOutline className='cursor-pointer hover:rose-500 text-xl' />
-                  <span className='text-xs'>Удалить</span>
+                  <span className='text-xs hidden sm:flex'>Удалить</span>
                 </span>
 
                 <Link to={`/posts/${id}/edit`}>
                   <span className='flex items-center gap-1 cursor-pointer hover:text-blue-600  transition-all'>
                     <MdOutlineModeEditOutline className='cursor-pointer text-xl' />
-                    <span className='text-xs'>Изменить</span>
+                    <span className='text-xs hidden sm:flex'>Изменить</span>
                   </span>
                 </Link>
               </>
@@ -178,7 +178,7 @@ const FullPost = () => {
 
             {!isRegister && (
               <>
-                <div className='absolute  flex-col items-center -left-9 bottom-8 hidden group-hover:flex'>
+                <div className='absolute  flex-col items-center -left-20 bottom-9 hidden group-hover:flex'>
                   <div
                     className={` bottom-full flex flex-col items-center text-center  
           }`}
@@ -186,7 +186,7 @@ const FullPost = () => {
                     <span className='relative z-10 p-2 text-xs leading-none text-white whitespace-no-wrap bg-gray-600 shadow-lg rounded-md'>
                       Необходимо зарегестрироваться
                     </span>
-                    <div className='w-3 h-3 -mt-2 rotate-45 bg-gray-600' />
+                    <div className='absolute right-4 -bottom-1 w-3 h-3 -mt-2 rotate-45 bg-gray-600' />
                   </div>
                 </div>
               </>

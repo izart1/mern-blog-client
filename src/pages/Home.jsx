@@ -8,8 +8,38 @@ import Spinner from '../components/Spinner.jsx';
 import { fetchAllPosts, fetchPosts } from '../redux/slices/post.js';
 import Pagination from '../components/Pagination.jsx';
 
-const Home = ({ navList, setCategory, category }) => {
+import { MdSportsSoccer } from 'react-icons/md';
+import { SlFire } from 'react-icons/sl';
+import { RiComputerLine } from 'react-icons/ri';
+import { AiOutlineClockCircle } from 'react-icons/ai';
+
+const navList = [
+  {
+    category: 'top',
+    title: 'Топ',
+    icon: <SlFire />,
+  },
+  {
+    category: 'new',
+    title: 'Новые',
+    icon: <AiOutlineClockCircle />,
+  },
+
+  {
+    category: 'webdev',
+    title: 'Разработка',
+    icon: <RiComputerLine />,
+  },
+  {
+    category: 'sport',
+    title: 'Спорт',
+    icon: <MdSportsSoccer />,
+  },
+];
+
+const Home = () => {
   const [page, setPage] = useState(1);
+  const [category, setCategory] = useState(navList[0].category);
   const dispatch = useDispatch();
 
   const { status, countOfPage, currentPage } = useSelector(
@@ -24,29 +54,37 @@ const Home = ({ navList, setCategory, category }) => {
   const userData = useSelector(state => state.auth.data);
   const allPosts = useSelector(state => state.posts.posts);
 
+  const selectedCategory = item => {
+    setCategory(item);
+  };
+
   if (isPostLoading) {
     return <Spinner />;
   }
 
   return (
     <>
-      <div className='max-w-screen-sm mx-auto py-4'>
-        <div className='bg-white rounded-lg '>
-          <ul className='flex items-center p-2 font-semibold gap-4 text-slate-600 overflow-auto '>
-            {navList.map(item => (
+      <div className='max-w-screen-sm py-4 mx-auto'>
+        <div className='bg-white rounded-lg mx-2'>
+          <ul className='flex items-center  justify-center p-2 font-semibold gap-2  sm:gap-4 text-slate-600 overflow-auto '>
+            {navList.map((item, index) => (
               <li
-                onClick={() => setCategory(item.category)}
+                onClick={() => selectedCategory(item.category)}
                 key={item.category}
-                className='flex items-center gap-1 cursor-pointer hover:bg-slate-200 p-2 rounded-lg transition-all'
+                className={`flex items-center gap-1 cursor-pointer hover:bg-slate-200 p-1 sm:p-2 rounded-lg transition-all ${
+                  item.category === category
+                    ? ' text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700'
+                    : null
+                }`}
               >
                 {item.icon}
-                <span>{item.title}</span>
+                <span className={`text-sm sm:text-lg`}>{item.title}</span>
               </li>
             ))}
           </ul>
         </div>
       </div>
-      <>
+      <div className='mx-2'>
         {allPosts.items.length >= 1 ? (
           allPosts.items.map(item => (
             <Post
@@ -67,7 +105,7 @@ const Home = ({ navList, setCategory, category }) => {
             </div>
           </div>
         )}
-      </>
+      </div>
       <Pagination
         countOfPage={countOfPage}
         setPage={setPage}

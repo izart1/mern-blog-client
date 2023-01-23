@@ -1,12 +1,8 @@
-import { useEffect, useState } from 'react';
-
-import { MdSportsSoccer } from 'react-icons/md';
-import { SlFire } from 'react-icons/sl';
-import { RiComputerLine } from 'react-icons/ri';
-import { AiOutlineClockCircle } from 'react-icons/ai';
+import { useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import CommentBox from './components/CommentsBox';
 import Layout from './components/Layout';
 import AddPost from './pages/AddPost';
 import FullPost from './pages/FullPost';
@@ -24,31 +20,6 @@ function App() {
     dispatch(fetchAuthMe());
   }, [dispatch]);
 
-  const navList = [
-    {
-      category: 'top',
-      title: 'Популярные',
-      icon: <SlFire />,
-    },
-    {
-      category: 'new',
-      title: 'Новые',
-      icon: <AiOutlineClockCircle />,
-    },
-
-    {
-      category: 'webdev',
-      title: 'Разработка',
-      icon: <RiComputerLine />,
-    },
-    {
-      category: 'sport',
-      title: 'Спорт',
-      icon: <MdSportsSoccer />,
-    },
-  ];
-  const [category, setCategory] = useState(navList[0].category);
-
   // useEffect(() => {
   //   dispatch(fetchPosts({ category }));
   // }, [dispatch, category]);
@@ -56,20 +27,13 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route
-          path='/'
-          element={
-            <Home
-              navList={navList}
-              setCategory={setCategory}
-              category={category}
-            />
-          }
-        />
+        <Route path='/' element={<Home />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
-        <Route path='posts/:id' element={<FullPost />} />
-        <Route path='posts/:id/edit' element={<AddPost />} />
+        <Route path='/posts/:id' element={<FullPost />}>
+          <Route path='/posts/:id/comments' element={<CommentBox />} />
+        </Route>
+        <Route path='/posts/:id/edit' element={<AddPost />} />
         <Route path='/add-post' element={<AddPost />} />
         <Route path='*' element={<NotFound />} />
       </Route>
