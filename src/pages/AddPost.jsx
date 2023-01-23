@@ -100,7 +100,7 @@ const AddPost = () => {
                 <img
                   className='max-w-[180px] rounded mt-2'
                   // src={`http://localhost:5555${imageUrl}`}
-                  src={`${imageUrl}`}
+                  src={`https://mern-blog-api.up.railway.app${imageUrl}`}
                   alt='uploaded'
                 />
               </>
