@@ -8,7 +8,7 @@ import {
 
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchRemovePost } from '../redux/slices/post';
+import { fetchPosts, fetchRemovePost } from '../redux/slices/post';
 
 import dateFormat from 'dateformat';
 import { declOfComments } from '../utils/declensionComment';
@@ -33,6 +33,7 @@ const Post = ({
   const onClickRemove = () => {
     if (window.confirm('Удалить статью?')) {
       dispatch(fetchRemovePost(id));
+      dispatch(fetchPosts({ category: 'top' }));
     }
   };
 
@@ -70,7 +71,8 @@ const Post = ({
       <div className='max-w-screen-sm mx-auto bg-white rounded-b-lg '>
         <div className='bg-slate-200 flex items-center justify-center'>
           {imageUrl ? (
-            <img src={`http://localhost:5555${imageUrl}`} alt='article img' />
+            // <img src={`http://localhost:5555${imageUrl}`} alt='article img' />
+            <img src={`${imageUrl}`} alt='article img' />
           ) : (
             ''
           )}
@@ -120,4 +122,4 @@ const Post = ({
     </div>
   );
 };
-export default React.memo(Post);
+export default Post;

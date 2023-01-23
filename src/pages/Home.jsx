@@ -1,30 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
+
 import Post from '../components/Post.jsx';
 
 import icon from '../assets/icon-thinking.png';
 import Spinner from '../components/Spinner.jsx';
-import { fetchPosts } from '../redux/slices/post.js';
+import { fetchAllPosts, fetchPosts } from '../redux/slices/post.js';
+import Pagination from '../components/Pagination.jsx';
 
 const Home = ({ navList, setCategory, category }) => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
 
-  const { status, countOfPage } = useSelector(
+  const { status, countOfPage, currentPage } = useSelector(
     state => state.posts.posts
   );
   const isPostLoading = status === 'loading';
 
   useEffect(() => {
-    console.log('fetching');
     dispatch(fetchPosts({ category, page: page }));
-  }, [category, dispatch, page]);
+  }, [dispatch, category, page]);
 
   const userData = useSelector(state => state.auth.data);
   const allPosts = useSelector(state => state.posts.posts);
-
-  console.count('HOME');
 
   if (isPostLoading) {
     return <Spinner />;
@@ -34,7 +32,7 @@ const Home = ({ navList, setCategory, category }) => {
     <>
       <div className='max-w-screen-sm mx-auto py-4'>
         <div className='bg-white rounded-lg '>
-          <ul className='flex items-center p-2 font-semibold gap-4 text-slate-600'>
+          <ul className='flex items-center p-2 font-semibold gap-4 text-slate-600 overflow-auto '>
             {navList.map(item => (
               <li
                 onClick={() => setCategory(item.category)}
@@ -70,21 +68,10 @@ const Home = ({ navList, setCategory, category }) => {
           </div>
         )}
       </>
-      <ReactPaginate
-        containerClassName={
-          'flex gap-4 text-slate-500 font-semibold justify-center mb-8 '
-        }
-        pageLinkClassName={'p-2'}
-        activeClassName={'bg-blue-500 text-slate-200 rounded'}
-        disabledClassName={'text-slate-300'}
-        breakLabel='...'
-        nextLabel='вперед >'
-        onPageChange={e => setPage(e.selected + 1)}
-        pageRangeDisplayed={5}
-        pageCount={countOfPage}
-        previousLabel='< назад'
-        renderOnZeroPageCount={null}
-        // forcePage={currentPage}
+      <Pagination
+        countOfPage={countOfPage}
+        setPage={setPage}
+        currentPage={currentPage}
       />
     </>
   );

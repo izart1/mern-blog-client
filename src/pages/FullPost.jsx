@@ -112,7 +112,8 @@ const FullPost = () => {
           {currentPost?.imageUrl ? (
             <img
               className=''
-              src={`http://localhost:5555${currentPost?.imageUrl}`}
+              // src={`http://localhost:5555${currentPost?.imageUrl}`}
+              src={`${currentPost?.imageUrl}`}
               alt='title'
             />
           ) : (

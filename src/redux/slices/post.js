@@ -22,6 +22,19 @@ const initialState = {
   },
 };
 
+export const fetchAllPosts = createAsyncThunk(
+  'posts/fetchAllPosts',
+  async () => {
+    try {
+      const { data } = await axios.get(`/posts`);
+
+      return data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+);
+
 export const fetchPosts = createAsyncThunk(
   'posts/fetchPosts',
   async ({ category, user, page }, { rejectWithValue, dispatch }) => {
@@ -107,6 +120,20 @@ const postSlice = createSlice({
       state.posts.items = [];
       state.posts.status = 'error';
     },
+    // FETCH ALL POST
+    [fetchAllPosts.pending]: state => {
+      state.posts.items = [];
+      state.posts.status = 'loading';
+    },
+    [fetchAllPosts.fulfilled]: (state, action) => {
+      state.posts.items = action.payload;
+      state.posts.status = 'loaded';
+    },
+    [fetchAllPosts.rejected]: state => {
+      state.posts.items = [];
+      state.posts.status = 'error';
+    },
+
     //     //REMOVE_POST
     [fetchRemovePost.pending]: (state, action) => {
       state.posts.status = 'loading';

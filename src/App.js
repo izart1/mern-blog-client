@@ -15,7 +15,7 @@ import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Register from './pages/Register';
 import { fetchAuthMe } from './redux/slices/auth';
-import { fetchPosts } from './redux/slices/post';
+// import { fetchPosts } from './redux/slices/post';
 
 function App() {
   const dispatch = useDispatch();
@@ -49,9 +49,9 @@ function App() {
   ];
   const [category, setCategory] = useState(navList[0].category);
 
-  useEffect(() => {
-    dispatch(fetchPosts({ category }));
-  }, [dispatch, category]);
+  // useEffect(() => {
+  //   dispatch(fetchPosts({ category }));
+  // }, [dispatch, category]);
 
   return (
     <Routes>
