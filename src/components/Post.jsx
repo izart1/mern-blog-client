@@ -93,7 +93,7 @@ const Post = ({
           <div className='flex items-center gap-4 text-slate-500 '>
             <Link to={`/posts/${id}/comments`}>
               <span className='flex items-center gap-1 cursor-pointer hover:text-slate-900  transition-all'>
-                <MdOutlineModeComment className=' text-3xl sm:text-xl' />
+                <MdOutlineModeComment className=' text-3xl sm:text-2xl' />
                 <span className='text-xs'>{comments?.length}</span>
                 <span className='text-xs hidden sm:flex'>
                   {`${declOfComments(comments?.length)}`}
@@ -106,7 +106,7 @@ const Post = ({
               <span className='text-xs '>Поделиться</span>
             </span> */}
             <span className='flex items-center gap-1 cursor-default'>
-              <AiOutlineEye className=' text-3xl sm:text-xl' />
+              <AiOutlineEye className=' text-3xl sm:text-2xl' />
               <span className='text-xs'>{viewsCount}</span>
               <span className='text-xs hidden sm:flex'>{`${declOfViews(
                 viewsCount
@@ -118,13 +118,13 @@ const Post = ({
                   onClick={onClickRemove}
                   className='flex items-center gap-1 cursor-pointer hover:text-slate-900  transition-all'
                 >
-                  <MdDeleteOutline className='cursor-pointer hover:rose-500 text-3xl sm:text-xl' />
+                  <MdDeleteOutline className='cursor-pointer hover:rose-500 text-3xl sm:text-2xl' />
                   <span className=' text-xs hidden sm:flex '>Удалить</span>
                 </span>
 
                 <Link to={`/posts/${id}/edit`}>
                   <span className='flex items-center gap-1 cursor-pointer hover:text-slate-900  transition-all'>
-                    <MdOutlineModeEditOutline className='cursor-pointer  text-3xl sm:text-xl' />
+                    <MdOutlineModeEditOutline className='cursor-pointer  text-3xl sm:text-2xl' />
                     <span className='text-xs hidden sm:flex'>Изменить</span>
                   </span>
                 </Link>

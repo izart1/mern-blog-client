@@ -78,7 +78,7 @@ const AddPost = () => {
   }
 
   return (
-    <>
+    <div className='mx-2'>
       <div className='  max-w-screen-sm mx-auto p-6 bg-white mt-6 rounded-t-lg hover:shadow-md transition-all '>
         <div className='flex flex-col gap-1'>
           <div className=''>
@@ -155,7 +155,7 @@ const AddPost = () => {
           Отменить
         </button>
       </div>
-    </>
+    </div>
   );
 };
 export default AddPost;

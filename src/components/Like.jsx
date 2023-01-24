@@ -12,11 +12,11 @@ const Like = ({ userId, likes, id }) => {
     <button
       disabled={!isRegister}
       onClick={() => dispatch(likePost({ id, userId }))}
-      className={`group relative  flex items-center gap-2 min-w-[51px] text-white bg-blue-500 rounded px-2 cursor-pointer ${
+      className={`group relative flex items-center gap-2 min-w-[51px] text-white bg-blue-500 rounded px-2 cursor-pointer ${
         !isRegister ? null : 'hover:bg-blue-600 '
       } `}
     >
-      <span className='font-semibold'>{likes?.length}</span>
+      <span className='font-semibold text-lg'>{likes?.length}</span>
       <span className=' text-lg'>
         {Boolean(likes.includes(userId)) ? <AiFillLike /> : <AiOutlineLike />}
       </span>
