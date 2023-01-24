@@ -43,7 +43,7 @@ const Header = () => {
         <Link to={'/'}>
           <h1
             onClick={() => dispatch(fetchPosts({ category: 'top' }))}
-            className='font-bold hover:text-rose-400 transition-all'
+            className='font-bold hover:text-rose-400 transition-all text-2xl'
           >
             .BLOG
           </h1>

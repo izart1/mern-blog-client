@@ -66,7 +66,7 @@ const Home = () => {
     <>
       <div className='max-w-screen-sm py-4 mx-auto'>
         <div className='bg-white rounded-lg mx-2'>
-          <ul className='flex items-center  justify-center p-2 font-semibold gap-2  sm:gap-4 text-slate-600 overflow-auto '>
+          <ul className='flex items-center  px-4 py-2 font-semibold gap-2  sm:gap-4 text-slate-600 overflow-auto '>
             {navList.map((item, index) => (
               <li
                 onClick={() => selectedCategory(item.category)}
@@ -78,7 +78,7 @@ const Home = () => {
                 }`}
               >
                 {item.icon}
-                <span className={`text-sm sm:text-lg`}>{item.title}</span>
+                <span className={`sm:text-lg`}>{item.title}</span>
               </li>
             ))}
           </ul>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { AiOutlineEye } from 'react-icons/ai';
+import { AiOutlineEye, AiOutlineRight } from 'react-icons/ai';
+import { FaChevronRight } from 'react-icons/fa';
 import {
   MdDeleteOutline,
   MdOutlineModeComment,
@@ -55,7 +56,7 @@ const Post = ({
               </div>
             )}
 
-            <div className=' text-sm'>{user.fullName}</div>
+            <div className=''>{user.fullName}</div>
             <div className='text-xs  text-slate-400'>
               <span>{dateFormat(createdAt, 'dd.mm.yy HH:MM')}</span>
             </div>
@@ -64,7 +65,14 @@ const Post = ({
 
         <Link to={`/posts/${id}`}>
           <h3 className='cursor-pointer font-semibold py-4'>{title}</h3>
-          <p className='cursor-pointer text-sm'>{text}</p>
+          <p className='cursor-pointer leading-tight line-clamp-10'>{text}</p>
+
+          {text.length > 700 && (
+            <span className='mt-2 inline-flex items-center gap-2 font-medium text-blue-600 hover:text-blue-700'>
+              Чиать далее
+              <FaChevronRight className='' />
+            </span>
+          )}
         </Link>
       </div>
 
@@ -85,7 +93,7 @@ const Post = ({
           <div className='flex items-center gap-4 text-slate-500 '>
             <Link to={`/posts/${id}/comments`}>
               <span className='flex items-center gap-1 cursor-pointer hover:text-slate-900  transition-all'>
-                <MdOutlineModeComment className='text-xl' />
+                <MdOutlineModeComment className=' text-3xl sm:text-xl' />
                 <span className='text-xs'>{comments?.length}</span>
                 <span className='text-xs hidden sm:flex'>
                   {`${declOfComments(comments?.length)}`}
@@ -98,7 +106,7 @@ const Post = ({
               <span className='text-xs '>Поделиться</span>
             </span> */}
             <span className='flex items-center gap-1 cursor-default'>
-              <AiOutlineEye className='text-xl' />
+              <AiOutlineEye className=' text-3xl sm:text-xl' />
               <span className='text-xs'>{viewsCount}</span>
               <span className='text-xs hidden sm:flex'>{`${declOfViews(
                 viewsCount
@@ -110,13 +118,13 @@ const Post = ({
                   onClick={onClickRemove}
                   className='flex items-center gap-1 cursor-pointer hover:text-slate-900  transition-all'
                 >
-                  <MdDeleteOutline className='cursor-pointer hover:rose-500 text-xl' />
-                  <span className='text-xs hidden sm:flex'>Удалить</span>
+                  <MdDeleteOutline className='cursor-pointer hover:rose-500 text-3xl sm:text-xl' />
+                  <span className=' text-xs hidden sm:flex '>Удалить</span>
                 </span>
 
                 <Link to={`/posts/${id}/edit`}>
                   <span className='flex items-center gap-1 cursor-pointer hover:text-slate-900  transition-all'>
-                    <MdOutlineModeEditOutline className='cursor-pointer text-xl' />
+                    <MdOutlineModeEditOutline className='cursor-pointer  text-3xl sm:text-xl' />
                     <span className='text-xs hidden sm:flex'>Изменить</span>
                   </span>
                 </Link>

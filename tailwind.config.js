@@ -15,7 +15,13 @@ module.exports = {
         // roboto: ['"Roboto Condensed"', 'sans-serif', 'system-ui'],
         // logo: ['"Aqum 2 Classic"'],
       },
+      lineClamp: {
+        7: '7',
+        8: '8',
+        9: '9',
+        10: '10',
+      },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 };
