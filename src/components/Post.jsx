@@ -1,5 +1,5 @@
 import React from 'react';
-import { AiOutlineEye, AiOutlineRight } from 'react-icons/ai';
+import { AiOutlineEye } from 'react-icons/ai';
 import { FaChevronRight } from 'react-icons/fa';
 import {
   MdDeleteOutline,

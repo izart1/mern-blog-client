@@ -1,11 +1,11 @@
 import 'easymde/dist/easymde.min.css';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import SimpleMDE from 'react-simplemde-editor';
 import axios from '../axios.js';
 import { selectIsAuth } from '../redux/slices/auth';
-import { fetchPosts } from '../redux/slices/post';
+import { fetchAllPosts } from '../redux/slices/post';
 
 const AddPost = () => {
   const { id } = useParams();
@@ -65,7 +65,7 @@ const AddPost = () => {
         ? await axios.patch(`/posts/${id}`, fields)
         : await axios.post('/posts', fields);
       const _id = isEditing ? id : data._id;
-      dispatch(fetchPosts({ category: 'new' }));
+      dispatch(fetchAllPosts());
       navigate(`/posts/${_id}`);
     } catch (error) {
       console.log(error);
@@ -151,9 +151,11 @@ const AddPost = () => {
         >
           {isEditing ? 'Сохранить' : 'Опубликовать'}
         </button>
-        <button className=' border border-slate-500  rounded-lg px-4 py-2 text-sm hover:bg-slate-100 transition-all'>
-          Отменить
-        </button>
+        <Link to={'/'}>
+          <button className=' border border-slate-500  rounded-lg px-4 py-2 text-sm hover:bg-slate-100 transition-all'>
+            Отменить
+          </button>
+        </Link>
       </div>
     </div>
   );

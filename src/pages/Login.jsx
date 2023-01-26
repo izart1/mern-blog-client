@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAuth, selectIsAuth } from '../redux/slices/auth';
+import { FaEyeSlash, FaEye } from 'react-icons/fa';
 
 const Login = () => {
+  const [isShown, setIsShown] = useState(false);
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const {
@@ -12,7 +14,7 @@ const Login = () => {
     formState: { errors, isValid },
     handleSubmit,
     setError,
-  } = useForm({ mode: 'onChange' });
+  } = useForm({ mode: 'onBlur' });
 
   const onSubmit = async values => {
     try {
@@ -61,7 +63,7 @@ const Login = () => {
               )}
             </label>
 
-            <label>
+            <label className='relative'>
               <input
                 {...register('password', {
                   required: { value: true, message: 'Введите пароль' },
@@ -71,7 +73,7 @@ const Login = () => {
                   },
                 })}
                 className='w-full resize-none border rounded-lg placeholder:italic text-sm p-2 focus:outline-none bg-slate-100 focus:bg-slate-50'
-                type='password'
+                type={isShown ? 'text' : 'password'}
                 placeholder='Пароль'
               />
               {errors?.password && (
@@ -79,6 +81,12 @@ const Login = () => {
                   {errors?.password?.message}
                 </span>
               )}
+              <span
+                onClick={() => setIsShown(!isShown)}
+                className='absolute right-2 top-3 cursor-pointer text-lg'
+              >
+                {isShown ? <FaEyeSlash /> : <FaEye />}
+              </span>
             </label>
 
             <input

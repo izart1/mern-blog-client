@@ -5,13 +5,14 @@ import Post from '../components/Post.jsx';
 
 import icon from '../assets/icon-thinking.png';
 import Spinner from '../components/Spinner.jsx';
-import { fetchAllPosts, fetchPosts } from '../redux/slices/post.js';
+import { fetchPosts } from '../redux/slices/post.js';
 import Pagination from '../components/Pagination.jsx';
 
 import { MdSportsSoccer } from 'react-icons/md';
 import { SlFire } from 'react-icons/sl';
 import { RiComputerLine } from 'react-icons/ri';
 import { AiOutlineClockCircle } from 'react-icons/ai';
+import { Outlet } from 'react-router-dom';
 
 const navList = [
   {
@@ -106,11 +107,13 @@ const Home = () => {
           </div>
         )}
       </div>
-      <Pagination
-        countOfPage={countOfPage}
-        setPage={setPage}
-        currentPage={currentPage}
-      />
+      {countOfPage > 1 && (
+        <Pagination
+          countOfPage={countOfPage}
+          setPage={setPage}
+          currentPage={currentPage}
+        />
+      )}
     </>
   );
 };

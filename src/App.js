@@ -11,7 +11,6 @@ import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Register from './pages/Register';
 import { fetchAuthMe } from './redux/slices/auth';
-// import { fetchPosts } from './redux/slices/post';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,10 +18,6 @@ function App() {
   useEffect(() => {
     dispatch(fetchAuthMe());
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(fetchPosts({ category }));
-  // }, [dispatch, category]);
 
   return (
     <Routes>

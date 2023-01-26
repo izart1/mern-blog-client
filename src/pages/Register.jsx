@@ -9,7 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
 const Register = () => {
-  const [isShown, setIsSHown] = useState(false);
+  const [isShown, setIsShown] = useState(false);
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
 
@@ -34,7 +34,7 @@ const Register = () => {
     formState: { errors, isValid },
     handleSubmit,
     setError,
-  } = useForm({ mode: 'onChange', resolver: yupResolver(validationSchema) });
+  } = useForm({ mode: 'onBlur', resolver: yupResolver(validationSchema) });
 
   const onSubmit = async values => {
     try {
@@ -55,7 +55,7 @@ const Register = () => {
   };
 
   const togglePassword = () => {
-    setIsSHown(isShown => !isShown);
+    setIsShown(isShown => !isShown);
   };
 
   if (isAuth) {

@@ -18,7 +18,11 @@ import { declOfViews } from '../utils/declensionViews.js';
 import AddComment from '../components/AddComment.jsx';
 import CommentBox from '../components/CommentsBox.jsx';
 import Spinner from '../components/Spinner.jsx';
-import { fetchRemovePost, likePost } from '../redux/slices/post.js';
+import {
+  fetchAllPosts,
+  fetchRemovePost,
+  likePost,
+} from '../redux/slices/post.js';
 import { declOfComments } from '../utils/declensionComment.js';
 // import Like from '../components/Like.jsx';
 
@@ -40,6 +44,7 @@ const FullPost = () => {
   const isRegister = Boolean(useSelector(state => state.auth.data));
 
   useEffect(() => {
+    dispatch(fetchAllPosts());
     axios
       .get(`/posts/${id}`)
       .then(res => {
@@ -52,7 +57,7 @@ const FullPost = () => {
         setIsLoading(false);
         navigate('/');
       });
-  }, [id, navigate]);
+  }, [id, navigate, dispatch]);
 
   if (isLoading) {
     return <Spinner />;

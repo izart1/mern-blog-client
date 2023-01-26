@@ -82,13 +82,30 @@ export const likePost = createAsyncThunk(
 
 export const fetchRemovePost = createAsyncThunk(
   'posts/fetchRemovePost',
-  async id => await axios.delete(`/posts/${id}`)
+  async ({ postId, comment }) => {
+    const { data } = await axios.put(`/comments/${postId}`, {
+      comment,
+    });
+
+    return data;
+  }
 );
 
 export const createComment = createAsyncThunk(
   'comment/createComment',
   async ({ postId, comment }) => {
     const { data } = await axios.put(`/comments/${postId}`, {
+      comment,
+    });
+
+    return data;
+  }
+);
+
+export const removeComment = createAsyncThunk(
+  'comment/removeComment',
+  async ({ postId, comment }) => {
+    const { data } = await axios.put(`delete/comments/${postId}`, {
       comment,
     });
 
@@ -206,19 +223,26 @@ const postSlice = createSlice({
       state.comments.items = [];
       state.comments.status = 'error';
     },
-    // FETCH COMMENTS
-    // [fetchAllComments.pending]: state => {
-    //   state.posts.items = [];
-    //   state.posts.status = 'loading';
-    // },
-    // [fetchAllComments.fulfilled]: (state, action) => {
-    //   state.posts.items = action.payload;
-    //   state.posts.status = 'loaded';
-    // },
-    // [fetchAllComments.rejected]: state => {
-    //   state.posts.items = [];
-    //   state.posts.status = 'error';
-    // },
+    //     //REMOVE_COMMENT
+    [removeComment.pending]: state => {
+      state.comments.items = [];
+      state.comments.status = 'loading';
+    },
+    [removeComment.fulfilled]: (state, action) => {
+      const currentPost = state.posts.items.find(
+        obj => obj._id === action.meta.arg.postId
+      );
+
+      if (currentPost) {
+        currentPost.comments = action.payload.comments;
+      }
+      // debugger;
+      state.comments.status = 'loaded';
+    },
+    [removeComment.rejected]: state => {
+      state.comments.items = [];
+      state.comments.status = 'error';
+    },
   },
 });
 
