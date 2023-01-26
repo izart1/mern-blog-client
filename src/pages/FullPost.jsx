@@ -73,7 +73,7 @@ const FullPost = () => {
   const isOwner = userData?._id === data?.user._id;
 
   return (
-    <>
+    <div className='mx-2'>
       <div className='relative group max-w-screen-sm mx-auto p-6 bg-white mt-6 rounded-t-lg  '>
         <div className='flex gap-4 items-center '>
           <div className='flex items-center gap-2'>
@@ -205,7 +205,7 @@ const FullPost = () => {
         <AddComment />
         <CommentBox />
       </div>
-    </>
+    </div>
   );
 };
 export default React.memo(FullPost);
