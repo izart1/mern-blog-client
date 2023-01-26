@@ -12,7 +12,6 @@ import { MdSportsSoccer } from 'react-icons/md';
 import { SlFire } from 'react-icons/sl';
 import { RiComputerLine } from 'react-icons/ri';
 import { AiOutlineClockCircle } from 'react-icons/ai';
-import { Outlet } from 'react-router-dom';
 
 const navList = [
   {

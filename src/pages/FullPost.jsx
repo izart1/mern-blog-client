@@ -208,4 +208,4 @@ const FullPost = () => {
     </div>
   );
 };
-export default React.memo(FullPost);
+export default (FullPost);

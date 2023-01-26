@@ -82,11 +82,8 @@ export const likePost = createAsyncThunk(
 
 export const fetchRemovePost = createAsyncThunk(
   'posts/fetchRemovePost',
-  async ({ postId, comment }) => {
-    const { data } = await axios.put(`/comments/${postId}`, {
-      comment,
-    });
-
+  async postId => {
+    const { data } = axios.delete(`/posts/${postId}`);
     return data;
   }
 );
@@ -159,7 +156,7 @@ const postSlice = createSlice({
       state.posts.items = state.posts.items.filter(
         obj => obj._id !== action.meta.arg
       );
-
+      debugger;
       state.posts.status = 'loaded';
     },
     [fetchRemovePost.rejected]: state => {

@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:5555',
-  // baseURL: 'https://mern-blog-api.up.railway.app/',
+  // baseURL: 'http://localhost:5555',
+  baseURL: 'https://mern-blog-api.up.railway.app/',
   // baseURL: process.env.REACT_APP_API_URL,
 });
 
