@@ -65,8 +65,9 @@ const AddPost = () => {
         ? await axios.patch(`/posts/${id}`, fields)
         : await axios.post('/posts', fields);
       const _id = isEditing ? id : data._id;
-      dispatch(fetchAllPosts());
+
       navigate(`/posts/${_id}`);
+      dispatch(fetchAllPosts());
     } catch (error) {
       console.log(error);
       alert('Ошибка при создании статьи');

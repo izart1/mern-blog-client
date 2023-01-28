@@ -208,4 +208,4 @@ const FullPost = () => {
     </div>
   );
 };
-export default (FullPost);
+export default FullPost;

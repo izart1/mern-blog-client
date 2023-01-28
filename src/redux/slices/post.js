@@ -27,7 +27,6 @@ export const fetchAllPosts = createAsyncThunk(
   async () => {
     try {
       const { data } = await axios.get(`/posts`);
-
       return data;
     } catch (error) {
       console.log(error.message);
