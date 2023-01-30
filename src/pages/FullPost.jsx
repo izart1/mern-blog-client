@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from '../axios.js';
@@ -108,7 +110,13 @@ const FullPost = () => {
           <h3 className='cursor-pointer font-semibold py-4'>
             {currentPost?.title}
           </h3>
-          <p className='cursor-pointer text-sm'>{currentPost?.text}</p>
+          <ReactMarkdown
+            className={'cursor-default text-sm'}
+            children={currentPost?.text}
+            remarkPlugins={[remarkGfm]}
+            
+          />
+          {/* <p className='cursor-pointer text-sm'>{currentPost?.text}</p> */}
         </Link>
       </div>
 

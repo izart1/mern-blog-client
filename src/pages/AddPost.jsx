@@ -1,5 +1,6 @@
 import 'easymde/dist/easymde.min.css';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import SimpleMDE from 'react-simplemde-editor';
@@ -35,6 +36,21 @@ const AddPost = () => {
   const onChange = useCallback(text => {
     setText(text);
   }, []);
+
+  const options = useMemo(
+    () => ({
+      spellChecker: false,
+      maxHeight: '400px',
+      autofocus: true,
+      placeholder: 'Введите текст...',
+      status: false,
+      autosave: {
+        enabled: true,
+        delay: 1000,
+      },
+    }),
+    []
+  );
 
   useEffect(() => {
     if (id) {
@@ -144,6 +160,7 @@ const AddPost = () => {
         className='max-w-screen-sm mx-auto bg-white'
         value={text}
         onChange={onChange}
+        options={options}
       />
       <div className='max-w-screen-sm mx-auto p-4 bg-white rounded-b-lg hover:shadow-md transition-all'>
         <button
