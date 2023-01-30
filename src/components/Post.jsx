@@ -81,6 +81,7 @@ const Post = ({
           {imageUrl ? (
             // <img src={`http://localhost:5555${imageUrl}`} alt='article img' />
             <img
+              className='max-h-[500px]'
               src={`https://mern-blog-api.up.railway.app${imageUrl}`}
               alt='article img'
             />
